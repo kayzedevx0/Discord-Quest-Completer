@@ -107,6 +107,7 @@ Want to add a game? Open an Issue or a Pull Request with the ID and executable o
 This software is provided "as is" for educational purposes. The author assumes no responsibility for any consequences to your Discord account or the simulated games. Use this tool responsibly.
 
 
+---
 
 
 <a id="-versione-italiana"></a>
