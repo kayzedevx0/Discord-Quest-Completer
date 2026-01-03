@@ -108,7 +108,6 @@ This software is provided "as is" for educational purposes. The author assumes n
 
 
 
-![KAYZE Banner](KayzeLauncher/banner.svg)
 
 <a id="-versione-italiana"></a>
 # 🇮🇹 Versione Italiana
