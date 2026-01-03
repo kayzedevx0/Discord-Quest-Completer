@@ -101,8 +101,8 @@ Database format:
 ```
 
 Want to add a game? Open an Issue or a Pull Request with the ID and executable of the missing game!
-⚠️ Disclaimer
 
+⚠️ Disclaimer
 This software is provided "as is" for educational purposes. The author assumes no responsibility for any consequences to your Discord account or the simulated games. Use this tool responsibly.
 
 
@@ -201,9 +201,10 @@ Il formato del database è:
 }
 ```
 Vuoi aggiungere un gioco? Apri una Issue o una Pull Request con l'ID e l'eseguibile del gioco mancante!
-⚠️ Disclaimer
 
+⚠️ Disclaimer
 Questo software è fornito "così com'è" a scopo educativo. L'autore non si assume alcuna responsabilità per eventuali conseguenze sul tuo account Discord o sui giochi simulati. Utilizza questo strumento responsabilmente.
+
 ❤️ Crediti
 
     Sviluppato da: KAYZE
