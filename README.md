@@ -8,7 +8,7 @@
 <a id="-english-version"></a>
 # 🇺🇸 English Version
 
-![KAYZE Banner](banner.svg)
+![KAYZE Banner](KayzeLauncher/banner.svg)
 
 **KAYZE** is a lightweight, portable, open-source C++ tool designed to complete **Discord Quests** (to earn Orbs, Avatar Decorations, or in-game items) without downloading or installing massive games.
 
@@ -113,7 +113,7 @@ This software is provided "as is" for educational purposes. The author assumes n
 <a id="-versione-italiana"></a>
 # 🇮🇹 Versione Italiana
 
-![KAYZE Banner](https://via.placeholder.com/1000x200/0f0f0f/0fb7d4?text=KAYZE+DISCORD+QUEST+COMPLETER)
+![KAYZE Banner](KayzeLauncher/banner.svg)
 
 **KAYZE** è un tool leggero, portatile e open-source scritto in C++ progettato per completare le **Discord Quests** (per ottenere Orbs, Decorazioni Avatar o oggetti in-game) senza dover scaricare o installare giochi pesanti.
 
