@@ -5,6 +5,7 @@
 
 ---
 
+<a id="-english-version"></a>
 # 🇺🇸 English Version
 
 ![KAYZE Banner](https://via.placeholder.com/1000x200/0f0f0f/0fb7d4?text=KAYZE+DISCORD+QUEST+COMPLETER)
@@ -97,120 +98,108 @@ Database format:
   "id": "DISCORD_APPLICATION_ID",
   "executables": ["game.exe", "launcher.exe"]
 }
+```
 
 Want to add a game? Open an Issue or a Pull Request with the ID and executable of the missing game!
 ⚠️ Disclaimer
 
 This software is provided "as is" for educational purposes. The author assumes no responsibility for any consequences to your Discord account or the simulated games. Use this tool responsibly.
-🇮🇹 Versione Italiana
 
-KAYZE è un tool leggero, portatile e open-source scritto in C++ progettato per completare le Discord Quests (per ottenere Orbs, Decorazioni Avatar o oggetti in-game) senza dover scaricare o installare giochi pesanti.
+
+<a id="-versione-italiana"></a>
+# 🇮🇹 Versione Italiana
+
+![KAYZE Banner](https://via.placeholder.com/1000x200/0f0f0f/0fb7d4?text=KAYZE+DISCORD+QUEST+COMPLETER)
+
+**KAYZE** è un tool leggero, portatile e open-source scritto in C++ progettato per completare le **Discord Quests** (per ottenere Orbs, Decorazioni Avatar o oggetti in-game) senza dover scaricare o installare giochi pesanti.
 
 Utilizza una tecnologia di "Ghost Process" per simulare l'esecuzione dei giochi, ingannando il rilevamento attività di Discord e permettendoti di riscattare le ricompense in pochi minuti.
-✨ Funzionalità
 
-    🚀 Nessun Download Richiesto: Completa le quest di giochi come Genshin Impact, Fortnite o Call of Duty senza installare 100GB di dati.
+---
 
-    ☁️ Database Cloud: La lista dei giochi viene scaricata automaticamente all'avvio da una repository online sicura. Non c'è bisogno di aggiornare l'app per avere i nuovi giochi!
+## ✨ Funzionalità
 
-    👻 Ghost Process Technology: Crea un processo dummy e una finestra invisibile (o nera) che replica fedelmente le firme digitali richieste da Discord per lo stato "In Gioco".
+* **🚀 Nessun Download Richiesto:** Completa le quest di giochi come *Genshin Impact*, *Fortnite* o *Call of Duty* senza installare 100GB di dati.
+* **☁️ Database Cloud:** La lista dei giochi viene scaricata automaticamente all'avvio da una repository online sicura. Non c'è bisogno di aggiornare l'app per avere i nuovi giochi!
+* **👻 Ghost Process Technology:** Crea un processo dummy e una finestra invisibile (o nera) che replica fedelmente le firme digitali richieste da Discord per lo stato "In Gioco".
+* **🎨 Interfaccia Moderna:** GUI pulita in **Dark Mode** basata su ImGui, con font personalizzati e layout responsive.
+* **📦 Portatile & Stealth:** Un singolo file `.exe` standalone. Nessuna installazione, nessun file spazzatura, nessuna dipendenza esterna.
 
-    🎨 Interfaccia Moderna: GUI pulita in Dark Mode basata su ImGui, con font personalizzati e layout responsive.
+---
 
-    📦 Portatile & Stealth: Un singolo file .exe standalone. Nessuna installazione, nessun file spazzatura, nessuna dipendenza esterna.
+## 📥 Download & Installazione
 
-📥 Download & Installazione
+1.  Vai alla sezione **[Releases](../../releases)** di questa repository.
+2.  Scarica l'ultimo file `KyzeLauncher.exe`.
+3.  Esegui il file (non richiede installazione).
 
-    Vai alla sezione [link sospetto rimosso] di questa repository.
+> **Nota:** Poiché il programma simula processi di sistema, alcuni antivirus potrebbero segnalarlo come falso positivo. Il codice è open source e può essere controllato da chiunque. Esegui come **Amministratore** se la quest non viene rilevata.
 
-    Scarica l'ultimo file KyzeLauncher.exe.
+---
 
-    Esegui il file (non richiede installazione).
+## 🎮 Guida: Come ottenere Orbs e Ricompense
 
-    Nota: Poiché il programma simula processi di sistema, alcuni antivirus potrebbero segnalarlo come falso positivo. Il codice è open source e può essere controllato da chiunque. Esegui come Amministratore se la quest non viene rilevata.
+Per far sì che Discord conti i minuti per la quest, devi seguire questi passaggi precisi. Il semplice avvio del gioco a volte non basta, Discord richiede lo **Streaming**.
 
-🎮 Guida: Come ottenere Orbs e Ricompense
+### 1. Attiva la Quest
+* Apri Discord.
+* Vai in **Impostazioni Utente** (l'ingranaggio in basso a sinistra) -> **Inventario Regali** (Gift Inventory).
+* Cerca la quest attiva (es. "Gioca 15 minuti a *Genshin Impact*") e clicca su **Accetta Quest**.
 
-Per far sì che Discord conti i minuti per la quest, devi seguire questi passaggi precisi. Il semplice avvio del gioco a volte non basta, Discord richiede lo Streaming.
-1. Attiva la Quest
+### 2. Avvia KAYZE
+* Apri `KyzeLauncher.exe`.
+* Cerca il nome del gioco nella barra di ricerca.
+* Clicca su **START** accanto all'eseguibile corretto.
+* *Si aprirà una finestra nera con il titolo del gioco. **NON CHIUDERLA** fino alla fine.*
 
-    Apri Discord.
+### 3. Vai in Streaming (FONDAMENTALE)
+* Entra in un qualsiasi canale vocale su un server Discord o in una chiamata privata con un amico (o un secondo account).
+* Clicca sul pulsante **Condividi Schermo** (Share Your Screen / Go Live).
+* Seleziona la scheda **Applicazioni** (Applications).
+* **Scegli la finestra del gioco aperta da KAYZE** (es. la finestra nera chiamata "GenshinImpact.exe").
+* Clicca su **Go Live**.
 
-    Vai in Impostazioni Utente (l'ingranaggio in basso a sinistra) -> Inventario Regali (Gift Inventory).
+### 4. Riscatta
+* Lascia lo stream attivo per **15 minuti** (o il tempo richiesto dalla quest).
+* Puoi controllare l'avanzamento passando il mouse sulla quest nell'Inventario Regali.
+* Una volta arrivato al 100%, clicca su **Riscatta Ricompensa**.
+* Ora puoi cliccare su **STOP** in KAYZE e chiudere tutto.
 
-    Cerca la quest attiva (es. "Gioca 15 minuti a Genshin Impact") e clicca su Accetta Quest.
+---
 
-2. Avvia KAYZE
-
-    Apri KyzeLauncher.exe.
-
-    Cerca il nome del gioco nella barra di ricerca.
-
-    Clicca su START accanto all'eseguibile corretto.
-
-    Si aprirà una finestra nera con il titolo del gioco. NON CHIUDERLA fino alla fine.
-
-3. Vai in Streaming (FONDAMENTALE)
-
-    Entra in un qualsiasi canale vocale su un server Discord o in una chiamata privata con un amico (o un secondo account).
-
-    Clicca sul pulsante Condividi Schermo (Share Your Screen / Go Live).
-
-    Seleziona la scheda Applicazioni (Applications).
-
-    Scegli la finestra del gioco aperta da KAYZE (es. la finestra nera chiamata "GenshinImpact.exe").
-
-    Clicca su Go Live.
-
-4. Riscatta
-
-    Lascia lo stream attivo per 15 minuti (o il tempo richiesto dalla quest).
-
-    Puoi controllare l'avanzamento passando il mouse sulla quest nell'Inventario Regali.
-
-    Una volta arrivato al 100%, clicca su Riscatta Ricompensa.
-
-    Ora puoi cliccare su STOP in KAYZE e chiudere tutto.
-
-🛠️ Compilare dai Sorgenti
+## 🛠️ Compilare dai Sorgenti
 
 Se sei uno sviluppatore e vuoi compilare il progetto da solo:
-Prerequisiti
 
-    Visual Studio 2022 (Workload: Sviluppo desktop con C++).
+### Prerequisiti
+* **Visual Studio 2022** (Workload: Sviluppo desktop con C++).
+* SDK di Windows 10/11.
 
-    SDK di Windows 10/11.
-
-Istruzioni Build
-
-    Clona la repository:
-    Bash
-
+### Istruzioni Build
+1.  Clona la repository:
+    ```bash
     git clone [https://github.com/IL_TUO_USERNAME/KAYZE-Discord-Quest-Completer.git](https://github.com/IL_TUO_USERNAME/KAYZE-Discord-Quest-Completer.git)
+    ```
+2.  Apri il file `KAYZE.sln`.
+3.  Imposta la configurazione su **Release** e **x64**.
+4.  Vai su *Project Properties* -> *C/C++* -> *Code Generation* e imposta **Runtime Library** su **Multi-threaded (/MT)** (per renderlo standalone).
+5.  Disabilita *Whole Program Optimization* se necessario per evitare conflitti di link.
+6.  Premi **Build Solution**. L'eseguibile sarà in `x64/Release`.
 
-    Apri il file KAYZE.sln.
+---
 
-    Imposta la configurazione su Release e x64.
+## 🌐 Database Giochi
 
-    Vai su Project Properties -> C/C++ -> Code Generation e imposta Runtime Library su Multi-threaded (/MT) (per renderlo standalone).
-
-    Disabilita Whole Program Optimization se necessario per evitare conflitti di link.
-
-    Premi Build Solution. L'eseguibile sarà in x64/Release.
-
-🌐 Database Giochi
-
-Il programma scarica la lista dei giochi da un Gist/JSON remoto. Questo permette di aggiungere nuovi giochi senza dover ricompilare il programma.
+Il programma scarica la lista dei giochi da un **Gist/JSON** remoto. Questo permette di aggiungere nuovi giochi senza dover ricompilare il programma.
 
 Il formato del database è:
-JSON
-
+```json
 {
   "name": "Nome Del Gioco",
   "id": "DISCORD_APPLICATION_ID",
   "executables": ["gioco.exe", "launcher.exe"]
 }
-
+```
 Vuoi aggiungere un gioco? Apri una Issue o una Pull Request con l'ID e l'eseguibile del gioco mancante!
 ⚠️ Disclaimer
 
