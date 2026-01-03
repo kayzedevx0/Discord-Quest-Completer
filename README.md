@@ -29,7 +29,7 @@ It uses "Ghost Process" technology to simulate game execution, tricking Discord'
 ## 📥 Download & Install
 
 1.  Go to the **[Releases](../../releases)** section of this repository.
-2.  Download the latest `KyzeLauncher.exe`.
+2.  Download the latest `KayzeLauncher.exe`.
 3.  Run the file (no installation required).
 
 > **Note:** Since the program simulates system processes, some antiviruses might flag it as a false positive. The code is open source and can be audited by anyone. **Run as Administrator** if the quest is not detected.
@@ -46,7 +46,7 @@ To make Discord count the minutes for the quest, you must follow these exact ste
 * Find the active quest (e.g., "Play 15 minutes of *Genshin Impact*") and click **Accept Quest**.
 
 ### 2. Start KAYZE
-* Open `KyzeLauncher.exe`.
+* Open `KayzeLauncher.exe`.
 * Search for the game name in the search bar.
 * Click **START** next to the correct executable.
 * *A black window with the game title will open. **DO NOT CLOSE IT** until finished.*
@@ -77,9 +77,9 @@ If you are a developer and want to compile the project yourself:
 ### Build Instructions
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/KAYZE-Discord-Quest-Completer.git](https://github.com/YOUR_USERNAME/KAYZE-Discord-Quest-Completer.git)
+    git clone [https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git](https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git)
     ```
-2.  Open `KAYZE.sln`.
+2.  Open `KAYZE Discord Quest Completer.sln`.
 3.  Set configuration to **Release** and **x64**.
 4.  Go to *Project Properties* -> *C/C++* -> *Code Generation* and set **Runtime Library** to **Multi-threaded (/MT)** (for standalone build).
 5.  Disable *Whole Program Optimization* if necessary to avoid linking conflicts.
@@ -132,7 +132,7 @@ Utilizza una tecnologia di "Ghost Process" per simulare l'esecuzione dei giochi,
 ## 📥 Download & Installazione
 
 1.  Vai alla sezione **[Releases](../../releases)** di questa repository.
-2.  Scarica l'ultimo file `KyzeLauncher.exe`.
+2.  Scarica l'ultimo file `KayzeLauncher.exe`.
 3.  Esegui il file (non richiede installazione).
 
 > **Nota:** Poiché il programma simula processi di sistema, alcuni antivirus potrebbero segnalarlo come falso positivo. Il codice è open source e può essere controllato da chiunque. Esegui come **Amministratore** se la quest non viene rilevata.
@@ -149,7 +149,7 @@ Per far sì che Discord conti i minuti per la quest, devi seguire questi passagg
 * Cerca la quest attiva (es. "Gioca 15 minuti a *Genshin Impact*") e clicca su **Accetta Quest**.
 
 ### 2. Avvia KAYZE
-* Apri `KyzeLauncher.exe`.
+* Apri `KayzeLauncher.exe`.
 * Cerca il nome del gioco nella barra di ricerca.
 * Clicca su **START** accanto all'eseguibile corretto.
 * *Si aprirà una finestra nera con il titolo del gioco. **NON CHIUDERLA** fino alla fine.*
@@ -180,9 +180,9 @@ Se sei uno sviluppatore e vuoi compilare il progetto da solo:
 ### Istruzioni Build
 1.  Clona la repository:
     ```bash
-    git clone [https://github.com/IL_TUO_USERNAME/KAYZE-Discord-Quest-Completer.git](https://github.com/IL_TUO_USERNAME/KAYZE-Discord-Quest-Completer.git)
+    git clone [https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git](https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git)
     ```
-2.  Apri il file `KAYZE.sln`.
+2.  Apri il file `KAYZE Discord Quest Completer.sln`.
 3.  Imposta la configurazione su **Release** e **x64**.
 4.  Vai su *Project Properties* -> *C/C++* -> *Code Generation* e imposta **Runtime Library** su **Multi-threaded (/MT)** (per renderlo standalone).
 5.  Disabilita *Whole Program Optimization* se necessario per evitare conflitti di link.
