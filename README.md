@@ -8,7 +8,7 @@
 <a id="-english-version"></a>
 # 🇺🇸 English Version
 
-![KAYZE Banner](https://via.placeholder.com/1000x200/0f0f0f/0fb7d4?text=KAYZE+DISCORD+QUEST+COMPLETER)
+![KAYZE Banner](banner.svg)
 
 **KAYZE** is a lightweight, portable, open-source C++ tool designed to complete **Discord Quests** (to earn Orbs, Avatar Decorations, or in-game items) without downloading or installing massive games.
 
@@ -103,7 +103,11 @@ Database format:
 Want to add a game? Open an Issue or a Pull Request with the ID and executable of the missing game!
 
 ⚠️ Disclaimer
+
 This software is provided "as is" for educational purposes. The author assumes no responsibility for any consequences to your Discord account or the simulated games. Use this tool responsibly.
+
+
+
 
 
 <a id="-versione-italiana"></a>
@@ -203,6 +207,7 @@ Il formato del database è:
 Vuoi aggiungere un gioco? Apri una Issue o una Pull Request con l'ID e l'eseguibile del gioco mancante!
 
 ⚠️ Disclaimer
+
 Questo software è fornito "così com'è" a scopo educativo. L'autore non si assume alcuna responsabilità per eventuali conseguenze sul tuo account Discord o sui giochi simulati. Utilizza questo strumento responsabilmente.
 
 ❤️ Crediti
