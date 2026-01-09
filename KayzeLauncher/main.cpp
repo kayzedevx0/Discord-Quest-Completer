@@ -27,7 +27,7 @@ using json = nlohmann::json;
 #define IDI_ICON1 101 
 static bool g_CanDrag = true;
 
-const char* DB_URL = "https://gist.githubusercontent.com/micheleoconedev/3be1241eafb8449b2bebc28ce0a79488/raw/games.json";
+const char* DB_URL = "https://gist.githubusercontent.com/kayzedevx0/3be1241eafb8449b2bebc28ce0a79488/raw/4428e4124b9572e382a7bafe7298bd4a5800cd74/games.json";
 const char* DB_FILENAME = "games_cache.temp";
 
 const ImVec4 colTextLight = ImVec4(0.95f, 0.96f, 0.98f, 1.0f);
