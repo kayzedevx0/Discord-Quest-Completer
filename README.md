@@ -10,7 +10,7 @@
 <a id="-english-version"></a>
 # 🇺🇸 English Version
 
-**KAYZE** is a lightweight, portable, open-source C++ tool designed to complete **Discord Quests** (to earn Orbs, Avatar Decorations, or in-game items) without downloading or installing massive games.
+**Discord Quest Completer by KAYZE** is a lightweight, portable, open-source C++ tool designed to complete **Discord Quests** (to earn Orbs, Avatar Decorations, or in-game items) without downloading or installing massive games.
 
 It uses "Ghost Process" technology to simulate game execution, tricking Discord's activity detection and allowing you to claim rewards in minutes.
 
@@ -38,11 +38,11 @@ It uses "Ghost Process" technology to simulate game execution, tricking Discord'
 
 ## 🎮 Guide: How to Get Orbs & Rewards
 
-To make Discord count the minutes for the quest, you must follow these exact steps. Simply starting the game is often not enough; Discord requires **Streaming**.
+To make Discord count the minutes for the quest, you must follow these exact steps.
 
 ### 1. Activate the Quest
 * Open Discord.
-* Go to **User Settings** (gear icon) -> **Gift Inventory**.
+* Go to **QUESTS**.
 * Find the active quest (e.g., "Play 15 minutes of *Genshin Impact*") and click **Accept Quest**.
 
 ### 2. Start KAYZE
@@ -51,16 +51,9 @@ To make Discord count the minutes for the quest, you must follow these exact ste
 * Click **START** next to the correct executable.
 * *A black window with the game title will open. **DO NOT CLOSE IT** until finished.*
 
-### 3. Stream to Discord (CRITICAL STEP)
-* Join any Voice Channel in a server or a private call with a friend/alt account.
-* Click the **Share Your Screen** (Go Live) button.
-* Select the **Applications** tab (NOT Screen).
-* **Select the game window opened by KAYZE** (e.g., the black window named "GenshinImpact.exe").
-* Click **Go Live**.
-
-### 4. Claim Reward
+### 3. Claim Reward
 * Keep the stream running for **15 minutes** (or the required time).
-* You can check progress by hovering over the quest in Gift Inventory.
+* You can check progress by hovering over the quest.
 * Once it hits 100%, click **Claim Reward**.
 * Now you can click **STOP** in KAYZE and close everything.
 
@@ -113,7 +106,7 @@ This software is provided "as is" for educational purposes. The author assumes n
 <a id="-versione-italiana"></a>
 # 🇮🇹 Versione Italiana
 
-**KAYZE** è un tool leggero, portatile e open-source scritto in C++ progettato per completare le **Discord Quests** (per ottenere Orbs, Decorazioni Avatar o oggetti in-game) senza dover scaricare o installare giochi pesanti.
+**Discord Quest Completer by KAYZE** è un tool leggero, portatile e open-source scritto in C++ progettato per completare le **Discord Quests** (per ottenere Orbs, Decorazioni Avatar o oggetti in-game) senza dover scaricare o installare giochi pesanti.
 
 Utilizza una tecnologia di "Ghost Process" per simulare l'esecuzione dei giochi, ingannando il rilevamento attività di Discord e permettendoti di riscattare le ricompense in pochi minuti.
 
@@ -141,11 +134,11 @@ Utilizza una tecnologia di "Ghost Process" per simulare l'esecuzione dei giochi,
 
 ## 🎮 Guida: Come ottenere Orbs e Ricompense
 
-Per far sì che Discord conti i minuti per la quest, devi seguire questi passaggi precisi. Il semplice avvio del gioco a volte non basta, Discord richiede lo **Streaming**.
+Per far sì che Discord conti i minuti per la quest, devi seguire questi passaggi precisi.
 
 ### 1. Attiva la Quest
 * Apri Discord.
-* Vai in **Impostazioni Utente** (l'ingranaggio in basso a sinistra) -> **Inventario Regali** (Gift Inventory).
+* Vai in **MISSIONI**.
 * Cerca la quest attiva (es. "Gioca 15 minuti a *Genshin Impact*") e clicca su **Accetta Quest**.
 
 ### 2. Avvia KAYZE
@@ -154,16 +147,9 @@ Per far sì che Discord conti i minuti per la quest, devi seguire questi passagg
 * Clicca su **START** accanto all'eseguibile corretto.
 * *Si aprirà una finestra nera con il titolo del gioco. **NON CHIUDERLA** fino alla fine.*
 
-### 3. Vai in Streaming (FONDAMENTALE)
-* Entra in un qualsiasi canale vocale su un server Discord o in una chiamata privata con un amico (o un secondo account).
-* Clicca sul pulsante **Condividi Schermo** (Share Your Screen / Go Live).
-* Seleziona la scheda **Applicazioni** (Applications).
-* **Scegli la finestra del gioco aperta da KAYZE** (es. la finestra nera chiamata "GenshinImpact.exe").
-* Clicca su **Go Live**.
-
-### 4. Riscatta
+### 3. Riscatta
 * Lascia lo stream attivo per **15 minuti** (o il tempo richiesto dalla quest).
-* Puoi controllare l'avanzamento passando il mouse sulla quest nell'Inventario Regali.
+* Puoi controllare l'avanzamento passando il mouse sulla quest.
 * Una volta arrivato al 100%, clicca su **Riscatta Ricompensa**.
 * Ora puoi cliccare su **STOP** in KAYZE e chiudere tutto.
 
