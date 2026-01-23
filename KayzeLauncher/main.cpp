@@ -13,6 +13,7 @@
 #include <fstream>
 #include <urlmon.h>
 #include <wininet.h>
+#include <cstdlib>
 
 #include "font_data.h" 
 #include "json.hpp"
@@ -29,6 +30,10 @@ static bool g_CanDrag = true;
 
 const char* DB_URL = "https://gist.githubusercontent.com/kayzedevx0/3be1241eafb8449b2bebc28ce0a79488/raw/games.json";
 const char* DB_FILENAME = "games_cache.temp";
+
+void CleanupTempFiles() {
+    DeleteFileA(DB_FILENAME);
+}
 
 const ImVec4 colTextLight = ImVec4(0.95f, 0.96f, 0.98f, 1.0f);
 const ImVec4 colTextGrey = ImVec4(1.00f, 1.00f, 1.00f, 0.40f);
@@ -185,6 +190,8 @@ void CleanupRenderTarget();
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 int main(int argc, char** argv) {
+    atexit(CleanupTempFiles);
+
     std::string cmdLine = GetCommandLineA();
     if (cmdLine.find("-ghost") != std::string::npos) {
         char myPath[MAX_PATH]; GetModuleFileNameA(NULL, myPath, MAX_PATH);
@@ -259,7 +266,7 @@ int main(int argc, char** argv) {
 
         ImGui::PushFont(fontBold);
         ImGui::AlignTextToFramePadding();
-        ImGui::TextColored(ImVec4(1, 1, 1, 0.5f), "1.0 Stable");
+        ImGui::TextColored(ImVec4(1, 1, 1, 0.5f), "1.0.2 Stable");
         ImGui::SameLine();
         ImGui::TextColored(ImVec4(1, 1, 1, 0.5f), "|");
         ImGui::SameLine();
@@ -267,7 +274,7 @@ int main(int argc, char** argv) {
         ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1, 1, 1, 0.15f));
         ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(1, 1, 1, 0.25f));
         if (ImGui::Button("GITHUB")) {
-            ShellExecuteA(NULL, "open", "https://github.com/micheleoconedev", NULL, NULL, SW_SHOWNORMAL);
+            ShellExecuteA(NULL, "open", "https://github.com/kayzedevx0", NULL, NULL, SW_SHOWNORMAL);
         }
         ImGui::PopStyleColor(2);
         ImGui::PopFont();
