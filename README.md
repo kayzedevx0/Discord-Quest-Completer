@@ -8,19 +8,20 @@
 ---
 
 <a id="-english-version"></a>
-# 🇺🇸 English Version
+# 🇺🇸 Discord Quest Completer by KAYZE
 
-**Discord Quest Completer by KAYZE** is a lightweight, portable, open-source C++ tool designed to complete **Discord Quests** (to earn Orbs, Avatar Decorations, or in-game items) without downloading or installing massive games.
+**Discord Quest Completer** is a lightweight, portable, open-source C++ tool designed to complete **Discord Quests** (to earn Orbs, Avatar Decorations, or in-game items) without downloading or installing massive games.
 
-It uses "Ghost Process" technology to simulate game execution, tricking Discord's activity detection and allowing you to claim rewards in minutes.
+It uses an advanced **"Clean Launch"** technology to simulate game execution, tricking Discord's activity detection perfectly and allowing you to claim rewards in minutes.
 
 ---
 
 ## ✨ Features
 
 * **🚀 No Downloads Required:** Complete quests for games like *Genshin Impact*, *Fortnite*, or *Call of Duty* without installing 100GB of data.
-* **☁️ Cloud Database:** The game list is automatically downloaded at startup from a secure online repository. No app updates needed for new games!
-* **👻 Ghost Process Technology:** Creates a dummy process and an invisible (or black) window that faithfully replicates the digital signatures required by Discord for "In-Game" status.
+* **☁️ Cloud Database:** The game list is fetched directly from the **GitHub Repository** at startup. No app updates needed for new games!
+* **🛡️ Clean Launch Technology (v1.0.3+):** Unlike other tools, KAYZE runs games in isolated folders (`fake_games/`) with real configuration files. This ensures **100% detection rate** by Discord.
+* **🧹 Auto-Cleanup:** The app automatically cleans up temporary executables and config files when you stop the game.
 * **🎨 Modern Interface:** Clean **Dark Mode** GUI based on ImGui, with custom fonts and responsive layout.
 * **📦 Portable & Stealth:** A single standalone `.exe` file. No installation, no junk files, no external dependencies.
 
@@ -70,7 +71,7 @@ If you are a developer and want to compile the project yourself:
 ### Build Instructions
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git](https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git)
+    git clone https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git
     ```
 2.  Open `KAYZE Discord Quest Completer.sln`.
 3.  Set configuration to **Release** and **x64**.
@@ -82,20 +83,19 @@ If you are a developer and want to compile the project yourself:
 
 ## 🌐 Game Database
 
-The program downloads the game list from a remote **Gist/JSON**. This allows adding new games without recompiling the program.
+The program downloads the game list from the **Main Repository**. This allows adding new games without recompiling the program.
 
-Database format:
+Database format (`gamelist.json`):
+
 ```json
 {
   "name": "Game Name",
   "id": "DISCORD_APPLICATION_ID",
-  "executables": ["game.exe", "launcher.exe"]
+  "executables": [{"name": "game.exe", "os": "win32"}]
 }
 ```
 
-Want to add a game? Open an Issue or a Pull Request with the ID and executable of the missing game!
-
-⚠️ Disclaimer
+## ⚠️ Disclaimer
 
 This software is provided "as is" for educational purposes. The author assumes no responsibility for any consequences to your Discord account or the simulated games. Use this tool responsibly.
 
@@ -104,19 +104,20 @@ This software is provided "as is" for educational purposes. The author assumes n
 
 
 <a id="-versione-italiana"></a>
-# 🇮🇹 Versione Italiana
+# 🇮🇹 Discord Quest Completer by KAYZE
 
-**Discord Quest Completer by KAYZE** è un tool leggero, portatile e open-source scritto in C++ progettato per completare le **Discord Quests** (per ottenere Orbs, Decorazioni Avatar o oggetti in-game) senza dover scaricare o installare giochi pesanti.
+**Discord Quest Completer** è un tool leggero, portatile e open-source scritto in C++ progettato per completare le **Discord Quests** (per ottenere Orbs, Decorazioni Avatar o oggetti in-game) senza dover scaricare o installare giochi pesanti.
 
-Utilizza una tecnologia di "Ghost Process" per simulare l'esecuzione dei giochi, ingannando il rilevamento attività di Discord e permettendoti di riscattare le ricompense in pochi minuti.
+Utilizza una tecnologia avanzata di **"Clean Launch"** per simulare l'esecuzione dei giochi, garantendo il rilevamento attività di Discord al 100% e permettendoti di riscattare le ricompense in pochi minuti.
 
 ---
 
 ## ✨ Funzionalità
 
 * **🚀 Nessun Download Richiesto:** Completa le quest di giochi come *Genshin Impact*, *Fortnite* o *Call of Duty* senza installare 100GB di dati.
-* **☁️ Database Cloud:** La lista dei giochi viene scaricata automaticamente all'avvio da una repository online sicura. Non c'è bisogno di aggiornare l'app per avere i nuovi giochi!
-* **👻 Ghost Process Technology:** Crea un processo dummy e una finestra invisibile (o nera) che replica fedelmente le firme digitali richieste da Discord per lo stato "In Gioco".
+* **☁️ Database Cloud:** La lista dei giochi viene scaricata automaticamente all'avvio dalla **Repository GitHub** principale. Non c'è bisogno di aggiornare l'app per avere i nuovi giochi!
+* **🛡️ Tecnologia Clean Launch (v1.0.3+):** A differenza di altri tool, KAYZE avvia i giochi in cartelle isolate (`fake_games/`) utilizzando file di configurazione reali. Questo garantisce che Discord rilevi sempre il gioco.
+* **🧹 Pulizia Automatica:** L'app elimina automaticamente i file `.exe` temporanei e le config quando stoppi il gioco.
 * **🎨 Interfaccia Moderna:** GUI pulita in **Dark Mode** basata su ImGui, con font personalizzati e layout responsive.
 * **📦 Portatile & Stealth:** Un singolo file `.exe` standalone. Nessuna installazione, nessun file spazzatura, nessuna dipendenza esterna.
 
@@ -166,7 +167,7 @@ Se sei uno sviluppatore e vuoi compilare il progetto da solo:
 ### Istruzioni Build
 1.  Clona la repository:
     ```bash
-    git clone [https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git](https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git)
+    git clone https://github.com/kayzedevx0/KAYZE-Discord-Quest-Completer.git
     ```
 2.  Apri il file `KAYZE Discord Quest Completer.sln`.
 3.  Imposta la configurazione su **Release** e **x64**.
@@ -176,32 +177,30 @@ Se sei uno sviluppatore e vuoi compilare il progetto da solo:
 
 ---
 
-## 🌐 Database Giochi
 
-Il programma scarica la lista dei giochi da un **Gist/JSON** remoto. Questo permette di aggiungere nuovi giochi senza dover ricompilare il programma.
+# 🌐 Database Giochi
+
+Il programma scarica la lista dei giochi dalla **Repository GitHub**. Questo permette di aggiungere nuovi giochi senza dover ricompilare il programma.
 
 Il formato del database è:
+
 ```json
 {
   "name": "Nome Del Gioco",
   "id": "DISCORD_APPLICATION_ID",
-  "executables": ["gioco.exe", "launcher.exe"]
+  "executables": [{"name": "gioco.exe", "os": "win32"}]
 }
 ```
-Vuoi aggiungere un gioco? Apri una Issue o una Pull Request con l'ID e l'eseguibile del gioco mancante!
 
-⚠️ Disclaimer
+## ⚠️ Disclaimer
 
 Questo software è fornito "così com'è" a scopo educativo. L'autore non si assume alcuna responsabilità per eventuali conseguenze sul tuo account Discord o sui giochi simulati. Utilizza questo strumento responsabilmente.
 
-❤️ Crediti
+## ❤️ Crediti
 
-    Sviluppato da: KAYZE
-
-    UI Library: Dear ImGui
-
-    JSON Parser: nlohmann/json
-
-    Font: Rajdhani (Embedded)
+*   Sviluppato da: **KAYZE**
+*   UI Library: Dear ImGui
+*   JSON Parser: nlohmann/json
+*   Font: Rajdhani (Embedded)
 
 <p align="center"> <i>Se questo tool ti è stato utile, lascia una ⭐ alla repository!</i> </p>
