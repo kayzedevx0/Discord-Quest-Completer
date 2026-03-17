@@ -14,6 +14,10 @@
 
 It uses an advanced **"Clean Launch"** technology to simulate game execution, tricking Discord's activity detection perfectly and allowing you to claim rewards in minutes.
 
+<div align="center">
+  <img src="KayzeLauncher/demo.gif" alt="KAYZE Tool in action" width="600" style="border-radius: 10px; margin-top: 15px; margin-bottom: 15px;">
+</div>
+
 ---
 
 ## ✨ Features
@@ -109,6 +113,10 @@ This software is provided "as is" for educational purposes. The author assumes n
 **Discord Quest Completer** è un tool leggero, portatile e open-source scritto in C++ progettato per completare le **Discord Quests** (per ottenere Orbs, Decorazioni Avatar o oggetti in-game) senza dover scaricare o installare giochi pesanti.
 
 Utilizza una tecnologia avanzata di **"Clean Launch"** per simulare l'esecuzione dei giochi, garantendo il rilevamento attività di Discord al 100% e permettendoti di riscattare le ricompense in pochi minuti.
+
+<div align="center">
+  <img src="KayzeLauncher/demo.gif" alt="KAYZE Tool in azione" width="600" style="border-radius: 10px; margin-top: 15px; margin-bottom: 15px;">
+</div>
 
 ---
 
