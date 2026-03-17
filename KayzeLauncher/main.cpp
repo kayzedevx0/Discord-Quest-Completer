@@ -33,9 +33,115 @@ const char* DB_URL = "https://raw.githubusercontent.com/kayzedevx0/Discord-Quest
 const char* DB_FILENAME = "games_cache.temp";
 const char* CONFIG_FILENAME = "kayze.config";
 
-void CleanupTempFiles() {
-    DeleteFileA(DB_FILENAME);
+const std::string CURRENT_VERSION = "1.0.4";
+
+std::string GetGitHubAPIResponse(const char* url) {
+    HINTERNET hInternet = InternetOpenA("KayzeLauncher_Updater/1.0", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+    if (!hInternet) return "";
+    HINTERNET hConnect = InternetOpenUrlA(hInternet, url, NULL, 0, INTERNET_FLAG_RELOAD, 0);
+    if (!hConnect) { InternetCloseHandle(hInternet); return ""; }
+
+    std::string response;
+    char buffer[4096];
+    DWORD bytesRead = 0;
+    while (InternetReadFile(hConnect, buffer, sizeof(buffer), &bytesRead) && bytesRead > 0) {
+        response.append(buffer, bytesRead);
+    }
+    InternetCloseHandle(hConnect);
+    InternetCloseHandle(hInternet);
+    return response;
 }
+
+void CheckForUpdates() {
+    std::string apiResponse = GetGitHubAPIResponse("https://api.github.com/repos/kayzedevx0/Discord-Quest-Completer/releases/latest");
+    if (apiResponse.empty()) return;
+
+    try {
+        json releaseData = json::parse(apiResponse);
+        std::string latestVersion = releaseData.value("tag_name", "");
+
+        if (!latestVersion.empty() && (latestVersion[0] == 'v' || latestVersion[0] == 'V')) {
+            latestVersion = latestVersion.substr(1);
+        }
+
+        if (latestVersion > CURRENT_VERSION && !latestVersion.empty()) {
+            std::string downloadUrl = "";
+            if (releaseData.contains("assets") && releaseData["assets"].is_array()) {
+                for (auto& asset : releaseData["assets"]) {
+                    std::string assetName = asset.value("name", "");
+                    if (assetName.find(".exe") != std::string::npos) {
+                        downloadUrl = asset.value("browser_download_url", "");
+                        break;
+                    }
+                }
+            }
+
+            if (!downloadUrl.empty()) {
+                char myPath[MAX_PATH];
+                GetModuleFileNameA(NULL, myPath, MAX_PATH);
+                std::string currentExe(myPath);
+                std::string oldExe = currentExe + ".old";
+                std::string newExe = currentExe + ".new";
+
+                HRESULT hr = URLDownloadToFileA(NULL, downloadUrl.c_str(), newExe.c_str(), 0, NULL);
+                if (SUCCEEDED(hr)) {
+                    MoveFileExA(currentExe.c_str(), oldExe.c_str(), MOVEFILE_REPLACE_EXISTING);
+                    MoveFileExA(newExe.c_str(), currentExe.c_str(), MOVEFILE_REPLACE_EXISTING);
+
+                    STARTUPINFOA si; ZeroMemory(&si, sizeof(si)); si.cb = sizeof(si);
+                    PROCESS_INFORMATION pi; ZeroMemory(&pi, sizeof(pi));
+                    CreateProcessA(NULL, (LPSTR)currentExe.c_str(), NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
+
+                    exit(0);
+                }
+            }
+        }
+    }
+    catch (...) {}
+}
+
+
+void DeleteDirectoryRecursively(const std::string& directory) {
+    std::string pattern = directory + "\\*.*";
+    WIN32_FIND_DATAA fd;
+    HANDLE hFind = FindFirstFileA(pattern.c_str(), &fd);
+
+    if (hFind != INVALID_HANDLE_VALUE) {
+        do {
+            std::string fileName = fd.cFileName;
+            if (fileName != "." && fileName != "..") {
+                std::string filePath = directory + "\\" + fileName;
+
+                if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+                    DeleteDirectoryRecursively(filePath);
+                }
+                else {
+                    SetFileAttributesA(filePath.c_str(), FILE_ATTRIBUTE_NORMAL);
+                    DeleteFileA(filePath.c_str());
+                }
+            }
+        } while (FindNextFileA(hFind, &fd));
+        FindClose(hFind);
+    }
+
+    SetFileAttributesA(directory.c_str(), FILE_ATTRIBUTE_NORMAL);
+    RemoveDirectoryA(directory.c_str());
+}
+
+void CleanupTempFiles() {
+    SetFileAttributesA(DB_FILENAME, FILE_ATTRIBUTE_NORMAL);
+    DeleteFileA(DB_FILENAME);
+
+    char buffer[MAX_PATH];
+    GetModuleFileNameA(NULL, buffer, MAX_PATH);
+    std::string path(buffer);
+    size_t lastSlash = path.find_last_of("\\/");
+    std::string rootDir = path.substr(0, lastSlash);
+
+    std::string fakeGamesDir = rootDir + "\\fake_games";
+    DeleteDirectoryRecursively(fakeGamesDir);
+}
+
 
 const ImVec4 colTextLight = ImVec4(0.95f, 0.96f, 0.98f, 1.0f);
 const ImVec4 colTextGrey = ImVec4(1.00f, 1.00f, 1.00f, 0.40f);
@@ -159,13 +265,25 @@ std::string GetCurrentDirectoryString() {
     return path.substr(0, lastSlash);
 }
 
+std::string SanitizeDirectoryName(std::string name) {
+    const std::string invalidChars = "\\/:*?\"<>|";
+    for (char& c : name) {
+        if (invalidChars.find(c) != std::string::npos) {
+            c = '_';
+        }
+    }
+    return name;
+}
+
 bool StartGhostProcess(RunningGame& game, std::string chosenExe) {
     std::string rootDir = GetCurrentDirectoryString();
 
     std::string fakeGamesDir = rootDir + "\\fake_games";
     _mkdir(fakeGamesDir.c_str());
 
-    std::string gameDir = fakeGamesDir + "\\" + game.info.name;
+    // Usa il nome sanitizzato per creare la cartella
+    std::string safeGameName = SanitizeDirectoryName(game.info.name);
+    std::string gameDir = fakeGamesDir + "\\" + safeGameName;
     _mkdir(gameDir.c_str());
 
     std::string destExe = gameDir + "\\" + chosenExe;
@@ -249,7 +367,15 @@ int main(int argc, char** argv) {
 
     char myPath[MAX_PATH];
     GetModuleFileNameA(NULL, myPath, MAX_PATH);
+
+    std::string oldExePath = std::string(myPath) + ".old";
+    if (GetFileAttributesA(oldExePath.c_str()) != INVALID_FILE_ATTRIBUTES) {
+        DeleteFileA(oldExePath.c_str());
+    }
+    CheckForUpdates();
+
     std::string currentExe(myPath);
+
     size_t lastSlash = currentExe.find_last_of("\\/");
     std::string currentDir = currentExe.substr(0, lastSlash);
     std::string configFile = currentDir + "\\" + CONFIG_FILENAME;
@@ -324,8 +450,10 @@ int main(int argc, char** argv) {
 
         ImGui::PushFont(fontBold);
         ImGui::AlignTextToFramePadding();
-        ImGui::TextColored(ImVec4(1, 1, 1, 0.5f), "1.0.3 Stable");
+        std::string verText = CURRENT_VERSION + " Stable";
+        ImGui::TextColored(ImVec4(1, 1, 1, 0.5f), "%s", verText.c_str());
         ImGui::SameLine(); ImGui::TextColored(ImVec4(1, 1, 1, 0.5f), "|"); ImGui::SameLine();
+
         ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1, 1, 1, 0.15f));
         ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(1, 1, 1, 0.25f));
         if (ImGui::Button("GITHUB")) ShellExecuteA(NULL, "open", "https://github.com/kayzedevx0", NULL, NULL, SW_SHOWNORMAL);
