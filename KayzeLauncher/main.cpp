@@ -15,6 +15,7 @@
 #include <wininet.h>
 #include <cstdlib>
 #include <direct.h>
+#include <sstream>
 
 #include "font_data.h" 
 #include "json.hpp"
@@ -29,11 +30,11 @@ using json = nlohmann::json;
 #define IDI_ICON1 101 
 static bool g_CanDrag = true;
 
-const char* DB_URL = "https://raw.githubusercontent.com/kayzedevx0/Discord-Quest-Completer/refs/heads/main/KayzeLauncher/gamelist.json";
+const char* DB_URL = "https://cdn.discordapp.com/detectables/games.json";
 const char* DB_FILENAME = "games_cache.temp";
 const char* CONFIG_FILENAME = "kayze.config";
 
-const std::string CURRENT_VERSION = "1.0.4";
+const std::string CURRENT_VERSION = "1.0.5";
 
 std::string GetGitHubAPIResponse(const char* url) {
     HINTERNET hInternet = InternetOpenA("KayzeLauncher_Updater/1.0", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
@@ -100,7 +101,6 @@ void CheckForUpdates() {
     catch (...) {}
 }
 
-
 void DeleteDirectoryRecursively(const std::string& directory) {
     std::string pattern = directory + "\\*.*";
     WIN32_FIND_DATAA fd;
@@ -142,7 +142,6 @@ void CleanupTempFiles() {
     DeleteDirectoryRecursively(fakeGamesDir);
 }
 
-
 const ImVec4 colTextLight = ImVec4(0.95f, 0.96f, 0.98f, 1.0f);
 const ImVec4 colTextGrey = ImVec4(1.00f, 1.00f, 1.00f, 0.40f);
 const ImVec4 colCyan = ImVec4(0.06f, 0.72f, 0.83f, 1.0f);
@@ -154,6 +153,7 @@ struct GameInfo {
     std::string name;
     std::string id;
     std::vector<std::string> executables;
+    std::vector<std::string> executablePaths;
 };
 
 std::string ToLower(std::string s) {
@@ -183,25 +183,34 @@ std::vector<GameInfo> FetchGameDatabase() {
                     if (item.contains("executables") && item["executables"].is_array()) {
                         for (auto& exeEntry : item["executables"]) {
                             if (exeEntry.value("os", "unknown") != "win32") continue;
-                            std::string exeName = exeEntry.value("name", "");
-                            if (exeName.empty()) continue;
+                            std::string exePath = exeEntry.value("name", "");
+                            if (exePath.empty()) continue;
 
+                            std::string exeName = exePath;
                             size_t lastSlash = exeName.find_last_of("/\\");
                             if (lastSlash != std::string::npos) exeName = exeName.substr(lastSlash + 1);
 
                             bool exists = false;
-                            for (const auto& e : game.executables) if (e == exeName) exists = true;
-                            if (!exists) game.executables.push_back(exeName);
+                            for (size_t i = 0; i < game.executables.size(); ++i) {
+                                if (game.executables[i] == exeName && game.executablePaths[i] == exePath) {
+                                    exists = true;
+                                    break;
+                                }
+                            }
+                            if (!exists) {
+                                game.executables.push_back(exeName);
+                                game.executablePaths.push_back(exePath);
+                            }
                         }
                     }
                     if (!game.executables.empty()) db.push_back(game);
                 }
             }
         }
-        catch (...) { db.push_back({ "Database Error", "0", {} }); }
+        catch (...) { db.push_back({ "Database Error", "0", {}, {} }); }
         f.close();
     }
-    else { db.push_back({ "Connection Error", "0", {} }); }
+    else { db.push_back({ "Connection Error", "0", {}, {} }); }
     return db;
 }
 
@@ -275,19 +284,33 @@ std::string SanitizeDirectoryName(std::string name) {
     return name;
 }
 
-bool StartGhostProcess(RunningGame& game, std::string chosenExe) {
+bool StartGhostProcess(RunningGame& game, std::string chosenExe, std::string relativeExePath) {
     std::string rootDir = GetCurrentDirectoryString();
-
     std::string fakeGamesDir = rootDir + "\\fake_games";
     _mkdir(fakeGamesDir.c_str());
 
-    // Usa il nome sanitizzato per creare la cartella
     std::string safeGameName = SanitizeDirectoryName(game.info.name);
     std::string gameDir = fakeGamesDir + "\\" + safeGameName;
     _mkdir(gameDir.c_str());
 
-    std::string destExe = gameDir + "\\" + chosenExe;
-    std::string configFile = gameDir + "\\" + CONFIG_FILENAME;
+    std::string normalizedPath = relativeExePath;
+    std::replace(normalizedPath.begin(), normalizedPath.end(), '/', '\\');
+
+    std::string exeDir = gameDir;
+    size_t lastSlash = normalizedPath.find_last_of('\\');
+    if (lastSlash != std::string::npos) {
+        std::string subDirs = normalizedPath.substr(0, lastSlash);
+        std::stringstream ss(subDirs);
+        std::string part;
+        while (std::getline(ss, part, '\\')) {
+            if (part.empty()) continue;
+            exeDir += "\\" + part;
+            _mkdir(exeDir.c_str());
+        }
+    }
+
+    std::string destExe = exeDir + "\\" + chosenExe;
+    std::string configFile = exeDir + "\\" + CONFIG_FILENAME;
 
     char myPath[MAX_PATH];
     GetModuleFileNameA(NULL, myPath, MAX_PATH);
@@ -305,7 +328,7 @@ bool StartGhostProcess(RunningGame& game, std::string chosenExe) {
 
     std::string cmdLine = "\"" + destExe + "\"";
 
-    if (CreateProcessA(NULL, (LPSTR)cmdLine.c_str(), NULL, NULL, FALSE, 0, NULL, (LPCSTR)gameDir.c_str(), &si, &game.pi)) {
+    if (CreateProcessA(NULL, (LPSTR)cmdLine.c_str(), NULL, NULL, FALSE, 0, NULL, (LPCSTR)exeDir.c_str(), &si, &game.pi)) {
         game.isRunning = true;
         game.activeExePath = destExe;
         return true;
@@ -537,6 +560,7 @@ int main(int argc, char** argv) {
             ImGui::PushFont(fontBold);
             for (int i = 0; i < numExecutables; ++i) {
                 const auto& exe = currentSelectedGame->executables[i];
+                const auto& exePath = currentSelectedGame->executablePaths[i];
                 bool alreadyRunning = false;
                 std::vector<RunningGame>::iterator activeGameIt;
                 for (auto it = activeGames.begin(); it != activeGames.end(); ++it) {
@@ -558,7 +582,7 @@ int main(int argc, char** argv) {
                     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.06f, 0.72f, 0.83f, 0.5f));
                     if (ImGui::Button(("START: " + exe).c_str(), ImVec2(currentBtnWidth, 30))) {
                         RunningGame rg; rg.info = *currentSelectedGame;
-                        if (StartGhostProcess(rg, exe)) activeGames.push_back(rg);
+                        if (StartGhostProcess(rg, exe, exePath)) activeGames.push_back(rg);
                     }
                     ImGui::PopStyleColor();
                 }
